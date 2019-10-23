@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+
+html,
+body {
+  min-width: 1200px;
+  word-break: break-all;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  font-size: 14px;
+}
+
+a,
+button {
+  color: inherit;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+
+  &[disabled],
+  &[disabled="disabled"] {
+    cursor: not-allowed;
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: inherit
+}
+
+/* 设置浮动，减少浮动带来的 bug */
+.fl,
+.fr {
+  display: inline;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
