@@ -4,16 +4,15 @@ const generatePostHeaders = (contentType: string) => {
   return headers;
 };
 const generateQueryParams = (params: any) => {
-  let r = [];
+  let r: string[] = [];
   if (params) {
-    // tslint:disable-next-line: forin
-    for (let p in params) {
+    for (let p of Object.keys(params)) {
       let v = params[p];
       if (v || v === false || v === 0 || v === '') {
         if (Array.isArray(v)) {
           r.push(`${p}=${v.join(',')}`);
         } else {
-          r.push(p + '=' + encodeURIComponent(v));
+          r.push(`${p}=${encodeURIComponent(v)}`);
         }
       }
     }
@@ -24,10 +23,9 @@ const generateQueryParams = (params: any) => {
   return '';
 };
 const generatePostData = (params: any) => {
-  let r = [];
+  let r: string[] = [];
   if (params) {
-    // tslint:disable-next-line: forin
-    for (let p in params) {
+    for (let p of Object.keys(params)) {
       let v = params[p];
       if (v) {
         if (Array.isArray(v)) {
