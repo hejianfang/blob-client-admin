@@ -4,11 +4,12 @@ import router from './router';
 import store from '@/store';
 import VueParticles from 'vue-particles';
 import '../../assets/js/move';
+
 Vue.use(VueParticles);
 Vue.config.productionTip = false;
 
 new Vue({
-    router,
-    store,
-    render: h => h(App)
+  router,
+  store,
+  render: (h: any) => h(App),
 }).$mount('#app');
