@@ -29,6 +29,7 @@
               <a class="name"><span>{{2}}</span><i class="el-icon-caret-bottom"></i></a>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
+                <el-dropdown-item command="admin">管理系统</el-dropdown-item>
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -41,6 +42,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+
 declare let document: Document | any;
 @Component
 export default class Header extends Vue {
@@ -48,9 +50,13 @@ export default class Header extends Vue {
   @Prop({ default: false }) public noMenus!: boolean;
   @Prop({ default: false }) public noRoot!: boolean;
   @Prop({ default: [] }) public menus!: object[];
+
   public commandInfo(command: string): void {
-    console.log(command);
+    if (command === 'admin') {
+      window.location.href = '/admin/';
+    }
   }
+
   public created() {
     // console.log(this.menus);
   }
@@ -62,11 +68,13 @@ export default class Header extends Vue {
 .header {
   pointer-events: none;
   opacity: 0.7;
+
   .header-wraps {
     .gg-navbar {
       width: 100%;
       background-color: @color;
       box-shadow: 1px 1px 20px 0px rgba(110, 125, 195, 0.2);
+
       .nav-limit {
         height: 66px;
         width: 1200px;
@@ -74,19 +82,23 @@ export default class Header extends Vue {
         .flex-between;
         align-items: center;
       }
+
       .nav-left {
         .app-title {
           font-size: 18px;
           font-weight: bold;
           color: @color-t;
         }
+
         .icon {
           font-size: 20px;
           margin-right: 6px;
         }
       }
+
       .app-menus {
         display: inline-block;
+
         li {
           pointer-events: auto;
           display: inline-block;
@@ -96,16 +108,19 @@ export default class Header extends Vue {
           padding: 0 10px;
           margin: 0 5px;
           color: @color-ss;
+
           a {
             display: block;
             line-height: 30px;
             padding: 0 14px;
           }
+
           &:hover {
             color: @color;
             background-color: #6e7dc3;
             border-radius: 15px;
           }
+
           &.active,
           &.router-link-exact-active.router-link-active {
             color: @color;
@@ -114,10 +129,13 @@ export default class Header extends Vue {
           }
         }
       }
+
       .nav-right {
         font-size: 14px;
+
         .name {
           margin: 0;
+
           span {
             display: inline-block;
             width: 25px;
@@ -129,11 +147,13 @@ export default class Header extends Vue {
             background-color: @color-t;
             color: @color;
           }
+
           i {
             font-size: 12px;
             margin-left: 2px;
           }
         }
+
         .el-dropdown {
           pointer-events: auto;
         }

@@ -5,7 +5,7 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/index/',
   routes: [
     {
       path: '/',
@@ -13,37 +13,37 @@ export default new Router({
     },
     {
       path: '/index',
-      name: 'home',
+      name: 'Index',
       component: () => import('../views/Index.vue'),
     },
     {
       path: '/actice',
-      name: 'actice',
+      name: 'Actice',
       component: () => import('../views/Actice.vue'),
     },
     {
       path: '/project',
-      name: 'project',
+      name: 'Project',
       component: () => import('../views/Project.vue'),
     },
     {
       path: '/archive',
-      name: 'archive',
+      name: 'Archive',
       component: () => import('../views/Archive.vue'),
     },
     {
       path: '/timeline',
-      name: 'timeline',
+      name: 'Timeline',
       component: () => import('../views/Timeline.vue'),
     },
     {
       path: '/message',
-      name: 'message',
+      name: 'Message',
       component: () => import('../views/Message.vue'),
     },
     {
       path: '/about',
-      name: 'about',
+      name: 'About',
       component: () => import('../views/About.vue'),
     },
   ],

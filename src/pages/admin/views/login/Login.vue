@@ -1,25 +1,22 @@
 <template>
-  <div class="Login">
-    vue模板
+  <div class="login">
+    登录页
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Login',
-  props: {},
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+@Component({
   components: {},
-  data () {
-    return {}
-  },
-  computed: {},
-  created () {},
-  methods: {},
-  filters: {},
-  watch: {}
-}
+})
+export default class Home extends Vue { }
 </script>
 
 <style lang="less">
-  .Login{}
+.login {
+  background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+}
 </style>
