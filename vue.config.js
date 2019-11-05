@@ -17,9 +17,13 @@ const pagesConfig = () => {
     return pages;
 };
 module.exports = {
-    // devServer: {
-    //   proxy: {}
-    // },
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000/api'
+            },
+        },
+    },
     pluginOptions: {
         "style-resources-loader": {
             preProcessor: "less",

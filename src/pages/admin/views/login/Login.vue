@@ -1,22 +1,93 @@
 <template>
   <div class="login">
-    登录页
+    <div class="login-wrap">
+      <h2>博客管理后台</h2>
+      <p>时光正好，未来可期，加油 ！</p>
+      <p>账号密码登录</p>
+      <div class="login-input">
+        <el-input placeholder="admin/user"
+                  prefix-icon="el-icon-user">
+        </el-input>
+      </div>
+      <div class="login-input">
+        <el-input placeholder="password"
+                  prefix-icon="el-icon-lock">
+        </el-input>
+      </div>
+      <div class="login-checkbox">
+        <el-checkbox>自动登录</el-checkbox>
+      </div>
+      <div class="login-btn">
+        <el-button type="primary"
+                   @click="toLogin">登录</el-button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action, State } from 'vuex-class';
 @Component({
   components: {},
 })
-export default class Home extends Vue { }
+export default class Home extends Vue {
+  @Action('login') public Login;
+  public toLogin(): void {
+    this.Login();
+  }
+}
 </script>
 
 <style lang="less">
 .login {
+  min-height: 100vh;
   background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
   background-repeat: no-repeat;
   background-position: center 110px;
   background-size: 100%;
+  display: flex;
+  align-items: center;
+  .login-wrap {
+    text-align: center;
+    margin: -100px auto 0;
+    width: 600px;
+    height: 300px;
+    h2 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.8;
+      & + p {
+        margin: 50px auto 0;
+        color: @color-t;
+        border-bottom: 2px solid @color-t;
+        padding-bottom: 10px;
+        width: 130px;
+      }
+    }
+    .login-input {
+      margin-top: 20px;
+      .el-input {
+        width: 300px;
+      }
+      & + .login-input {
+        margin-top: 20px;
+      }
+    }
+    .login-checkbox {
+      margin: 20px auto 0;
+      width: 300px;
+      text-align: left;
+    }
+    .login-btn {
+      margin: 20px auto 0;
+      width: 300px;
+      .el-button {
+        width: 100%;
+      }
+    }
+  }
 }
 </style>
