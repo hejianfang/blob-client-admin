@@ -6,11 +6,14 @@
       <p>账号密码登录</p>
       <div class="login-input">
         <el-input placeholder="admin/user"
+                  v-model="form.username"
                   prefix-icon="el-icon-user">
         </el-input>
       </div>
       <div class="login-input">
         <el-input placeholder="password"
+                  show-password
+                  v-model="form.password"
                   prefix-icon="el-icon-lock">
         </el-input>
       </div>
@@ -32,9 +35,18 @@ import { Action, State } from 'vuex-class';
   components: {},
 })
 export default class Home extends Vue {
-  @Action('login') public Login;
-  public toLogin(): void {
-    this.Login();
+  @Action('tologin') public Login;
+  private form: object = {};
+  public async toLogin() {
+    try {
+      let res = await this.Login(this.form);
+      if (res) {
+        console.log(res);
+        this.$success('登录成功');
+      }
+    } catch (err) {
+      this.$error(err);
+    }
   }
 }
 </script>

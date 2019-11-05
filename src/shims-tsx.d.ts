@@ -11,3 +11,9 @@ declare global {
     }
   }
 }
+declare module 'vue/types/vue' {
+  interface Vue {
+    $error: any;
+    $success: any;
+  }
+}

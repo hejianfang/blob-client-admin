@@ -6,13 +6,20 @@
 //   return baseIm;
 // };
 // export default baseImport(require.context('./modules', true, /.ts$/));
-let myModule = {};
-const modulesList = require.context('./modules', true, /\.ts$/);
-modulesList.keys().map(item => {
-  const selfModule = modulesList(item);
-  myModule = {
-    ...myModule,
-    ...(selfModule.default || selfModule),
-  };
+const files: any = require.context('./modules/', false, /\.ts$/);
+const modules: any = {};
+files.keys().forEach((item: string) => {
+  const tmpKey: string = item.replace(/\.\//g, '').replace(/\.ts/g, '');
+  modules[tmpKey] = files(item).default;
 });
-export default myModule;
+export default modules;
+// let myModule = {};
+// const modulesList = require.context('./modules', true, /\.ts$/);
+// modulesList.keys().map(item => {
+//   const selfModule = modulesList(item);
+//   myModule = {
+//     ...myModule,
+//     ...(selfModule.default || selfModule),
+//   };
+// });
+// export default myModule;

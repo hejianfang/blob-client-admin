@@ -4,6 +4,5 @@ declare var document: Document;
 declare var THREE: any;
 
 // interface THREE extends Window {}
-
-declare module "vue-particles";
-declare module "element-ui";
+declare module 'vue-particles';
+declare module 'element-ui';
