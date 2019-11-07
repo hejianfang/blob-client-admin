@@ -9166,11 +9166,6 @@ vuex-class@^0.3.2:
   resolved "https://registry.npm.taobao.org/vuex-class/download/vuex-class-0.3.2.tgz#c7e96a076c1682137d4d23a8dcfdc63f220e17a8"
   integrity sha1-x+lqB2wWghN9TSOo3P3GPyIOF6g=
 
-vuex-module-decorators@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.npm.taobao.org/vuex-module-decorators/download/vuex-module-decorators-0.11.0.tgz#1da409385f001dc45fffcc292f4a7895cdf8db27"
-  integrity sha1-HaQJOF8AHcRf/8wpL0p4lc342yc=
-
 vuex@^3.0.1:
   version "3.1.1"
   resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.1.tgz#0c264bfe30cdbccf96ab9db3177d211828a5910e"

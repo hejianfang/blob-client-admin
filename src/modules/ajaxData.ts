@@ -1,6 +1,20 @@
-const generatePostHeaders = (contentType: string) => {
-  const headers = { Accept: 'application/json' };
+const getToken = () => {
+  const token = localStorage.getItem('my_token');
+  if (token) {
+    return 'Bearer ' + token;
+  }
+};
+const generatePostHeaders = (contentType?: string) => {
+  let headers = { Accept: 'application/json' };
   headers['Content-Type'] = contentType || 'application/json';
+  // tslint:disable-next-line: no-string-literal
+  headers['Authorization'] = getToken();
+  return headers;
+};
+const generateGetHeaders = () => {
+  let headers: any = {};
+  // tslint:disable-next-line: no-string-literal
+  headers['Authorization'] = getToken();
   return headers;
 };
 const generateQueryParams = (params: any) => {
@@ -46,4 +60,5 @@ export default {
   generatePostHeaders,
   generateQueryParams,
   generatePostData,
+  generateGetHeaders,
 };

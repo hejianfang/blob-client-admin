@@ -16,6 +16,7 @@ const actions = {
           axios({
             method: it.method,
             url,
+            headers: headers || ajaxData.generateGetHeaders(),
           }).then((res: any) => {
             if (res.data.code === 200) {
               reslove(res.data);
@@ -31,7 +32,7 @@ const actions = {
             method: it.method,
             url,
             data: postData,
-            headers: headers || ajaxData.generatePostHeaders(params),
+            headers: headers || ajaxData.generatePostHeaders(),
           }).then((res: any) => {
             if (res.data.code === 200) {
               reslove(res.data);

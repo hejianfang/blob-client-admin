@@ -10,13 +10,21 @@
 @color-r: #1fa103;
 /* 主要用于错误或警告状态 @color-warning  */
 @color-w: #ee4973;
+
+@color-p: #C0C4CC;
 /* 边框 */
 @border-d: 1px solid #00ff00;
-
+@shadow-d: 0px 0px 40px 0px rgba(145, 157, 169, 0.23);
 @imgUrl: '~@/assets/img';
 
 
 .flex-between {
   display: flex;
   justify-content: space-between;
+}
+
+.common-card {
+  background-color: #fff;
+  box-shadow: @shadow-d;
+  border-radius: 5px;
 }

@@ -16,5 +16,18 @@ export default new Router({
       name: 'Login',
       component: () => import('../views/login/Login.vue'),
     },
+    {
+      path: '/main',
+      name: 'Main',
+      component: () => import('../views/main/Main.vue'),
+      redirect: '/main/index',
+      children: [
+        {
+          path: 'index',
+          name: 'Index',
+          component: () => import('../views/main/Index.vue'),
+        },
+      ],
+    },
   ],
 });

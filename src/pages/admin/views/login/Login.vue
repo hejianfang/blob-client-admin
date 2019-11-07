@@ -7,18 +7,20 @@
       <div class="login-input">
         <el-input placeholder="admin/user"
                   v-model="form.username"
+                  clearable
                   prefix-icon="el-icon-user">
         </el-input>
       </div>
       <div class="login-input">
         <el-input placeholder="password"
                   show-password
+                  clearable
                   v-model="form.password"
                   prefix-icon="el-icon-lock">
         </el-input>
       </div>
       <div class="login-checkbox">
-        <el-checkbox>自动登录</el-checkbox>
+        <el-checkbox v-model="form.autoLogin">7天内自动登录</el-checkbox>
       </div>
       <div class="login-btn">
         <el-button type="primary"
@@ -31,18 +33,30 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
+interface InfoType {
+  username: string | number;
+  password: string | number;
+  autoLogin: boolean;
+}
 @Component({
   components: {},
 })
 export default class Home extends Vue {
   @Action('tologin') public Login;
-  private form: object = {};
+  public form: InfoType = {
+    username: '',
+    password: '',
+    autoLogin: false,
+  };
   public async toLogin() {
+    if (!this.form.username) { return this.$error('请先填写用户名'); }
+    if (!this.form.password) { return this.$error('密码不能为空'); }
     try {
       let res = await this.Login(this.form);
       if (res) {
-        console.log(res);
+        localStorage.setItem('my_token', res.token);
         this.$success('登录成功');
+        this.$router.push('/main');
       }
     } catch (err) {
       this.$error(err);

@@ -13,13 +13,24 @@
 //     });
 //   }
 // }
-const state = {};
+const state = {
+  myInfo: {},
+};
 const actions = {
   tologin(_: any, data: any) {
     return _.dispatch('callInterface', {
       method: 'post',
       url: '/api/login',
       data,
+    }).then((res: any) => {
+      state.myInfo = res.data;
+      return res.data;
+    });
+  },
+  isLogin(_: any) {
+    return _.dispatch('callInterface', {
+      method: 'get',
+      url: '/api/isLogin',
     }).then((res: any) => {
       return res.data;
     });
