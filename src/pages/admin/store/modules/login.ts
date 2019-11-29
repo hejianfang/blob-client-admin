@@ -13,9 +13,7 @@
 //     });
 //   }
 // }
-const state = {
-  myInfo: {},
-};
+const state = {};
 const actions = {
   tologin(_: any, data: any) {
     return _.dispatch('callInterface', {
@@ -23,7 +21,6 @@ const actions = {
       url: '/api/login',
       data,
     }).then((res: any) => {
-      state.myInfo = res.data;
       return res.data;
     });
   },

@@ -10,35 +10,48 @@
         </svg>
         <span v-if="!collapse">我的博客</span>
       </h2>
-      <el-menu default-active="1-4-1"
+      <el-menu :default-active="activeIndex"
                class="el-menu-vertical-demo"
                :unique-opened="true"
                :collapse-transition="false"
-               @open="handleOpen"
-               @close="handleClose"
+               :router="true"
                :collapse="collapse">
-        <el-submenu :index="e + ''"
-                    v-for="(e,i) in 3"
-                    :key="i">
+        <el-submenu v-for="(e,i) in treeMenu"
+                    :key="i"
+                    :index="e.index">
           <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">导航{{e}}</span>
+            <i :class="e.icon"></i>
+            <span slot="title">{{e.firstLevel}}</span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item :index="'1-' + e">选项{{e}}</el-menu-item>
+          <el-menu-item-group v-for="(c,d) in e.children"
+                              :key="e.index + '-' + d">
+            <el-menu-item :index="e.index + d"
+                          :route="c.path"
+                          @click="handleOpen(e.index + d, c.name, e.firstLevel)">
+              {{c.name}}
+            </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>
     <el-container>
       <el-header class="asset a-m-header">
-        <svg class="icon icon-menus"
-             @click="collapse = !collapse"
-             aria-hidden="true">
-          <use xlink:href="#icon-drxx11"></use>
-        </svg>
+        <div class="a-m-h-left">
+          <svg class="icon icon-menus"
+               @click="collapse = !collapse"
+               aria-hidden="true">
+            <use xlink:href="#icon-drxx11"></use>
+          </svg>
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item>{{name?name:'首页'}}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{activeName}}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <div>
-          123
+          <svg class="icon"
+               aria-hidden="true">
+            <use xlink:href="#icon-touxiang-nan"></use>
+          </svg>
         </div>
       </el-header>
       <el-main>
@@ -52,20 +65,49 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action, State } from 'vuex-class';
+import { routeTree } from '../../createRouteTree';
+
 @Component({
   components: {},
 })
 export default class Main extends Vue {
-  private collapse: boolean = false
+  private collapse: boolean = false;
+  private treeMenu: any = [];
+  private activeIndex: any = null;
+  private activeName: any = null;
+  private name: any = null;
+  @State user;
   get menus(): object[] {
     let arr: object[] = [];
     return arr;
   }
-  public handleOpen(key, keyPath) {
-    console.log(key, keyPath);
+  get mySelfInfo(): any {
+    return this.user.myInfo;
   }
-  public handleClose(key, keyPath) {
-    console.log(key, keyPath);
+  public created() {
+    if (localStorage.treeIndex) {
+      this.activeIndex = localStorage.treeIndex;
+    }
+    if (localStorage.treeActiveName) {
+      this.activeName = localStorage.treeActiveName;
+    }
+    if (localStorage.treeName) {
+      this.name = localStorage.treeName;
+    }
+    this.treeMenu = routeTree();
+  }
+  public handleOpen(index, name, firstName) {
+    this.activeName = name;
+    this.name = firstName;
+    localStorage.treeIndex = index;
+    localStorage.treeActiveName = name;
+    localStorage.treeName = firstName;
+  }
+  public destroyed() {
+    localStorage.removeItem('treeIndex');
+    localStorage.removeItem('treeActiveName');
+    localStorage.removeItem('treeName');
   }
 }
 </script>
@@ -96,7 +138,7 @@ export default class Main extends Vue {
     }
     .el-menu-item-group {
       background: #747b81;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
+      box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0);
     }
     .el-menu-item {
       // background-color: none;
@@ -120,17 +162,28 @@ export default class Main extends Vue {
     align-items: center;
     .icon-menus {
       cursor: pointer;
+      margin-right: 20px;
+    }
+    .a-m-h-left {
+      display: flex;
+      align-items: center;
+      .el-breadcrumb {
+        font-size: 16px;
+        line-height: 1.5;
+      }
     }
   }
   .el-main {
-    height: calc(100vh - 120px);
-  }
-  .a-m-main {
+    height: calc(100vh - 140px);
+    overflow-y: scroll;
     .common-card;
-    padding: 14px 20px;
-    height: 100%;
-    overflow: auto;
+    margin: 20px 0 0 20px;
   }
+  // .a-m-main {
+  //   .common-card;
+  //   padding: 14px 20px;
+  //   height: 100%;
+  // }
   .el-footer {
     line-height: 60px;
     text-align: center;

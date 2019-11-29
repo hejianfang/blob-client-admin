@@ -6,3 +6,4 @@ declare var THREE: any;
 // interface THREE extends Window {}
 declare module 'vue-particles';
 declare module 'element-ui';
+declare module 'nprogress';

@@ -13,7 +13,8 @@ import { Route } from 'vue-router';
   components: {},
 })
 export default class App extends Vue {
-  @Action('isLogin') public isLogin;
+  @Action isLogin;
+  @Action getInfo;
   public isOrLogin: boolean = false;
   public created() {
     this.init();
@@ -23,6 +24,8 @@ export default class App extends Vue {
       this.isOrLogin = await this.isLogin();
       if (!this.isOrLogin) {
         this.toLogin();
+      } else {
+        await this.getInfo()
       }
     } catch (err) {
       this.$error(err);

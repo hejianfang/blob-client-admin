@@ -43,6 +43,7 @@ interface InfoType {
 })
 export default class Home extends Vue {
   @Action('tologin') public Login;
+  @Action public getInfo;
   public form: InfoType = {
     username: '',
     password: '',
@@ -56,6 +57,7 @@ export default class Home extends Vue {
       if (res) {
         localStorage.setItem('my_token', res.token);
         this.$success('登录成功');
+        await this.getInfo()
         this.$router.push('/main');
       }
     } catch (err) {

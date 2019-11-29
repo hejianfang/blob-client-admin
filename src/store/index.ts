@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import ajaxData from '@/modules/ajaxData';
 import admin from '@/pages/admin/store';
+import user from './moudles/user';
 Vue.use(Vuex);
 const state: any = {};
 const actions = {
@@ -46,6 +47,7 @@ const actions = {
   },
 };
 const modules = {
+  user,
   ...admin,
 };
 export default new Vuex.Store({
