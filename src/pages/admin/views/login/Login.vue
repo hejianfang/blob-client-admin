@@ -5,26 +5,27 @@
       <p>时光正好，未来可期，加油 ！</p>
       <p>账号密码登录</p>
       <div class="login-input">
-        <el-input placeholder="admin/user"
-                  v-model="form.username"
-                  clearable
-                  prefix-icon="el-icon-user">
-        </el-input>
+        <el-input
+          placeholder="admin/user"
+          v-model="form.username"
+          clearable
+          prefix-icon="el-icon-user"
+        ></el-input>
       </div>
       <div class="login-input">
-        <el-input placeholder="password"
-                  show-password
-                  clearable
-                  v-model="form.password"
-                  prefix-icon="el-icon-lock">
-        </el-input>
+        <el-input
+          placeholder="password"
+          show-password
+          clearable
+          v-model="form.password"
+          prefix-icon="el-icon-lock"
+        ></el-input>
       </div>
       <div class="login-checkbox">
         <el-checkbox v-model="form.autoLogin">7天内自动登录</el-checkbox>
       </div>
       <div class="login-btn">
-        <el-button type="primary"
-                   @click="toLogin">登录</el-button>
+        <el-button type="primary" @click="toLogin">登录</el-button>
       </div>
     </div>
   </div>
@@ -57,8 +58,8 @@ export default class Home extends Vue {
       if (res) {
         localStorage.setItem('my_token', res.token);
         this.$success('登录成功');
-        await this.getInfo()
-        this.$router.push('/main');
+        await this.getInfo();
+        await this.$router.push('/main');
       }
     } catch (err) {
       this.$error(err);

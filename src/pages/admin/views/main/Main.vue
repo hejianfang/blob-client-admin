@@ -1,35 +1,31 @@
 <template>
   <el-container class="admin-main">
-    <el-aside :width="collapse?'64px':'220px'"
-              style="transition: all 0.5s">
-      <h2 class="a-m-h"
-          :class="collapse?'a-m-collapse':''">
-        <svg class="icon"
-             aria-hidden="true">
-          <use xlink:href="#icon-candan"></use>
+    <el-aside :width="collapse?'64px':'220px'" style="transition: all 0.5s">
+      <h2 class="a-m-h" :class="collapse?'a-m-collapse':''">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-candan" />
         </svg>
         <span v-if="!collapse">我的博客</span>
       </h2>
-      <el-menu :default-active="activeIndex"
-               class="el-menu-vertical-demo"
-               :unique-opened="true"
-               :collapse-transition="false"
-               :router="true"
-               :collapse="collapse">
-        <el-submenu v-for="(e,i) in treeMenu"
-                    :key="i"
-                    :index="e.index">
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-vertical-demo"
+        :unique-opened="true"
+        :collapse-transition="false"
+        :router="true"
+        :collapse="collapse"
+      >
+        <el-submenu v-for="(e,i) in treeMenu" :key="i" :index="e.index">
           <template slot="title">
             <i :class="e.icon"></i>
             <span slot="title">{{e.firstLevel}}</span>
           </template>
-          <el-menu-item-group v-for="(c,d) in e.children"
-                              :key="e.index + '-' + d">
-            <el-menu-item :index="e.index + d"
-                          :route="c.path"
-                          @click="handleOpen(e.index + d, c.name, e.firstLevel)">
-              {{c.name}}
-            </el-menu-item>
+          <el-menu-item-group v-for="(c,d) in e.children" :key="e.index + '-' + d">
+            <el-menu-item
+              :index="e.index + d"
+              :route="c.path"
+              @click="handleOpen(e.index + d, c.name, e.firstLevel)"
+            >{{c.name}}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -37,20 +33,18 @@
     <el-container>
       <el-header class="asset a-m-header">
         <div class="a-m-h-left">
-          <svg class="icon icon-menus"
-               @click="collapse = !collapse"
-               aria-hidden="true">
-            <use xlink:href="#icon-drxx11"></use>
+          <svg class="icon icon-menus" @click="collapse = !collapse" aria-hidden="true">
+            <use xlink:href="#icon-drxx11" />
           </svg>
           <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item>{{name?name:'首页'}}</el-breadcrumb-item>
             <el-breadcrumb-item>{{activeName}}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
-        <div>
-          <svg class="icon"
-               aria-hidden="true">
-            <use xlink:href="#icon-touxiang-nan"></use>
+        <div class="a-m-h-right">
+          <img v-if="mySelfInfo.avatar" :src="mySelfInfo.avatar" alt />
+          <svg v-else class="icon" aria-hidden="true">
+            <use xlink:href="#icon-touxiang-nan" />
           </svg>
         </div>
       </el-header>
@@ -77,7 +71,7 @@ export default class Main extends Vue {
   private activeIndex: any = null;
   private activeName: any = null;
   private name: any = null;
-  @State user;
+  @State private user;
   get menus(): object[] {
     let arr: object[] = [];
     return arr;
@@ -172,6 +166,15 @@ export default class Main extends Vue {
         line-height: 1.5;
       }
     }
+    .a-m-h-right {
+      cursor: pointer;
+      img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        border-radius: 50%;
+      }
+    }
   }
   .el-main {
     height: calc(100vh - 140px);
@@ -200,5 +203,14 @@ export default class Main extends Vue {
       width: 64px;
     }
   }
+}
+.small-input {
+  width: 300px;
+}
+.medium-input {
+  width: 500px;
+}
+.mini-input {
+  width: 100px;
 }
 </style>

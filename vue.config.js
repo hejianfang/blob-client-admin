@@ -19,8 +19,8 @@ const pagesConfig = () => {
 module.exports = {
     devServer: {
         proxy: {
-            '/api': {
-                target: 'http://localhost:3000'
+            "/api": {
+                target: "http://10.188.102.68:3001",
             },
         },
     },

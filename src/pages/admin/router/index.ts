@@ -53,14 +53,11 @@ const nolRoutes: any = [
     name: '分类管理 - 5',
     meta: {
       name: '标签列表',
-      icon: 'el-icon-s-opportunity',
+      icon: 'el-icon-s-operation',
     },
     component: () => import('../views/main/category/CategoryList.vue'),
   },
 ];
-const createRoute = () => {
-  return nolRoutes;
-};
 export default new Router({
   mode: 'history',
   base: '/admin/',
@@ -79,7 +76,7 @@ export default new Router({
       name: 'Main',
       component: () => import('../views/main/Main.vue'),
       redirect: '/main/index',
-      children: createRoute(),
+      children: nolRoutes,
     },
   ],
 });
