@@ -7,3 +7,5 @@ declare var THREE: any;
 declare module 'vue-particles';
 declare module 'element-ui';
 declare module 'nprogress';
+declare module 'mavon-editor';
+declare module 'moment';

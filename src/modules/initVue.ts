@@ -2,7 +2,7 @@ import Vue from 'vue';
 import '../assets/css/base.less';
 import elementUi from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import filters from '@/filters/moment.js';
 Vue.use(elementUi);
 Vue.prototype.$success = (msg: string) => {
   Vue.prototype.$message.success({ message: msg, duration: 1000 });
@@ -16,6 +16,9 @@ Vue.prototype.$error = (er: any) => {
   }
   Vue.prototype.$message.error({ message, duration: 1000 });
 };
+Object.keys(filters).forEach((key) => {
+  Vue.filter(key, filters[key]);
+});
 Vue.config.productionTip = false;
 
 export default Vue;

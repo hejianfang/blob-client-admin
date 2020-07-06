@@ -22,7 +22,7 @@ const generateQueryParams = (params: any) => {
   if (params) {
     for (let p of Object.keys(params)) {
       let v = params[p];
-      if (v || v === false || v === 0 || v === '') {
+      if (v || v === false || v === 0) {
         if (Array.isArray(v)) {
           r.push(`${p}=${v.join(',')}`);
         } else {

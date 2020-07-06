@@ -10,7 +10,7 @@
 @color-r: #1fa103;
 /* 主要用于错误或警告状态 @color-warning  */
 @color-w: #ee4973;
-
+@color-bg:#eff2f8;
 @color-p: #C0C4CC;
 /* 边框 */
 @border-d: 1px solid #00ff00;
@@ -27,4 +27,53 @@
   background-color: #fff;
   box-shadow: @shadow-d;
   border-radius: 5px;
+}
+.common-table{
+  margin-top: 20px;
+  width: 100%;
+  background: #fff;
+  border-collapse: collapse;
+  border-spacing: 0;
+  th,td{
+    border:1px solid @color-b;
+    text-align: center;
+    font-size: 14px;
+    height: 36px;
+    padding: 5px;
+    color: @color-s;
+    &.table-order {
+      text-align: left;
+      padding-left: 10px;
+      width: 60px;
+    }
+  }
+  th{
+    color: @color-d;
+    border-right: 0;
+    background: @color-bg;
+    position: relative;
+    font-weight: 400;
+    &::after{
+      content:'';
+      width: 1px;
+      height: 20px;
+      background: #cbd3e0;
+      position: absolute;
+      right: -0.5px;
+      top:50%;
+      transform: translateY(-50%);
+    }
+    &:last-child{
+      border-right:1px solid @color-b;
+      &::after{
+        display: none;
+      }
+    }
+  }
+  .text-left{
+    text-align: left;
+  }
+  a{
+    color: @color-t;
+  }
 }
