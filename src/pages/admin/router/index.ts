@@ -59,8 +59,6 @@ const nolRoutes: any = [
   },
 ];
 export default new Router({
-  mode: 'history',
-  base: '/admin/',
   routes: [
     {
       path: '/',

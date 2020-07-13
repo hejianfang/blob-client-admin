@@ -8,25 +8,27 @@
             <span class="app-title">{{title}}</span>
             <slot></slot>
           </div>
-          <ul class="app-menus"
-              v-if="!noMenus">
-            <router-link tag="li"
-                         to="/index"
-                         v-if="!noRoot"><a>首页</a></router-link>
-            <router-link tag="li"
-                         v-for="m in menus"
-                         :key="m.name"
-                         :to="m.path"
-                         active-class="active">
+          <ul class="app-menus" v-if="!noMenus">
+            <router-link tag="li" to="/index" v-if="!noRoot">
+              <a>首页</a>
+            </router-link>
+            <router-link
+              tag="li"
+              v-for="m in menus"
+              :key="m.name"
+              :to="m.path"
+              active-class="active"
+            >
               <a>{{m.name}}</a>
             </router-link>
           </ul>
           <div class="nav-right">
             <!-- 个人信息 -->
-            <el-dropdown placement="bottom"
-                         trigger="click"
-                         @command="commandInfo">
-              <a class="name"><span>{{2}}</span><i class="el-icon-caret-bottom"></i></a>
+            <el-dropdown placement="bottom" trigger="click" @command="commandInfo">
+              <a class="name">
+                <span>{{2}}</span>
+                <i class="el-icon-caret-bottom"></i>
+              </a>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
                 <el-dropdown-item command="admin">管理系统</el-dropdown-item>
@@ -53,7 +55,7 @@ export default class Header extends Vue {
 
   public commandInfo(command: string): void {
     if (command === 'admin') {
-      window.location.href = '/admin/';
+      window.location.href = '/admin.html';
     }
   }
 
