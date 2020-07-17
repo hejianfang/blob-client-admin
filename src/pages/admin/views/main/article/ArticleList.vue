@@ -50,41 +50,41 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
-interface searchType {
-  page: number,
-  size: number,
-  state: any,
-  searchName: any
+interface SearchType {
+  page: number;
+  size: number;
+  state: any;
+  searchName: any;
 }
 @Component({
   components: {},
 })
 export default class ArticleList extends Vue {
   @Action('getArticlePages') public getArticlePages;
-  private search: searchType = {
+  private search: SearchType = {
     page: 1,
     size: 10,
     state: null,
-    searchName: ''
-  }
-  public articleList: object[] = []
+    searchName: '',
+  };
+  public articleList: object[] = [];
   public created() {
-    this.getArticleList()
+    this.getArticleList();
   }
   public searchList() {
-    this.search.page = 1
-    this.getArticleList()
+    this.search.page = 1;
+    this.getArticleList();
   }
   public getArticleList() {
-    this.getArticlePages(this.search).then(res => {
-      this.articleList = res.data.list
-    }).catch(this.$error)
+    this.getArticlePages(this.search).then((res: any) => {
+      this.articleList = res.data.list;
+    }).catch(this.$error);
   }
   public editArticle(id) {
-    this.$router.push(`create?id=${id}`)
+    this.$router.push(`create?id=${id}`);
   }
   public deleteArticle(id) {
-
+    console.log(id);
   }
 }
 </script>

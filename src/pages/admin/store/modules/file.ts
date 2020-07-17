@@ -10,9 +10,9 @@ const actions = {
     }).then((res: any) => {
       return res.data;
     });
-  }
-}
+  },
+};
 export default {
   state,
   actions,
-}
+};

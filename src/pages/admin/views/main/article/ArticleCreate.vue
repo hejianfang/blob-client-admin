@@ -117,8 +117,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
-import Editor from '../../../components/Editor';
-interface formType {
+import Editor from '../../../components/Editor.vue';
+interface FormType {
   name: string | number;
   author: string | number;
   keywords: any;
@@ -129,7 +129,7 @@ interface formType {
   tag: any;
   level: any;
   state: number;
-  content: string
+  content: string;
 }
 @Component({
   components: { Editor },
@@ -138,7 +138,7 @@ export default class ArticleCreate extends Vue {
   @Action('uploadFiles') public toUploadFiles;
   @Action('addArticle') public toAddArticle;
   @Action('getArticleDetailForId') public getArticleDetailForId;
-  private form: formType = {
+  private form: FormType = {
     name: '',
     author: 'Aomr"',
     keywords: [],
@@ -149,22 +149,22 @@ export default class ArticleCreate extends Vue {
     tag: [],
     level: [],
     state: 1,
-    content: ''
-  }
-  private inputVisible: boolean = false
-  private inputValue: any = ''
-  private levelList: object[] = []
-  private tagsList: object[] = []
+    content: '',
+  };
+  private inputVisible: boolean = false;
+  private inputValue: any = '';
+  private levelList: object[] = [];
+  private tagsList: object[] = [];
   public created() {
     if (this.$route.query.id) {
-      this.getArticleDetail()
+      this.getArticleDetail();
     }
   }
   // 获取文章详情
   public getArticleDetail() {
-    this.getArticleDetailForId({ id: this.$route.query.id }).then(res => {
-      console.log(res)
-    })
+    this.getArticleDetailForId({ id: this.$route.query.id }).then((res: any) => {
+      console.log(res);
+    });
   }
   public handleClose(tag) {
     this.form.keywords.splice(this.form.keywords.indexOf(tag), 1);
@@ -172,8 +172,8 @@ export default class ArticleCreate extends Vue {
   public showInput() {
     this.inputVisible = true;
     this.$nextTick(() => {
-      this.$refs.saveTagInput.$refs.input.focus();
-    })
+      (this.$refs.saveTagInput as any).$refs.input.focus();
+    });
   }
   public handleInputConfirm() {
     let inputValue = this.inputValue;
@@ -185,22 +185,22 @@ export default class ArticleCreate extends Vue {
   }
   // 上传到服务器
   public uploadFile(param) {
-    const size = param.file.size
+    const size = param.file.size;
     if (size >= 200 * 1024 * 1024) {
-      return this.$error('最大不可超过2M')
+      return this.$error('最大不可超过2M');
     }
-    this.toUploadFiles(param.file).then(res => {
-      this.form.cover = res.filePath
-    })
+    this.toUploadFiles(param.file).then((res: any) => {
+      this.form.cover = res.filePath;
+    });
   }
   public toSave(state) {
-    this.form.state = state
-    this.toAddArticle(this.form).then(res => {
+    this.form.state = state;
+    this.toAddArticle(this.form).then((res: any) => {
       if (res.code === 200) {
-        this.$success(res.msg)
-        this.$router.push('list')
+        this.$success(res.msg);
+        this.$router.push('list');
       }
-    }).catch(this.$error)
+    }).catch(this.$error);
   }
 }
 </script>

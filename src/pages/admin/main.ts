@@ -6,7 +6,6 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 Vue.config.productionTip = false;
 // 简单配置
-console.log(router)
 NProgress.inc(0.2);
 NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false });
 

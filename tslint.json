@@ -38,6 +38,7 @@
             "error",
             "only-multiline"
         ],
-        "no-shadowed-variable": false
+        "no-shadowed-variable": false,
+        "member-ordering": false
     }
 }

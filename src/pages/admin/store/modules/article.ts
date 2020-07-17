@@ -27,8 +27,8 @@ const actions = {
       return res;
     });
   },
-}
+};
 export default {
   state,
   actions,
-}
+};

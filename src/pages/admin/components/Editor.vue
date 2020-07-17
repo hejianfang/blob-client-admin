@@ -12,8 +12,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+import { mavonEditor } from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
 import { Action, State } from 'vuex-class';
 
 @Component({
@@ -21,23 +21,23 @@ import { Action, State } from 'vuex-class';
 })
 export default class Editor extends Vue {
   @Action('uploadFiles') public toUploadFiles;
-  private editorValue: string = ''
+  private editorValue: string = '';
 
   // 添加图片
   public imgAdd(pos, $file) {
-    const size = $file.size
+    const size = $file.size;
     if (size >= 200 * 1024 * 1024) {
-      return this.$error('最大不可超过2M')
+      return this.$error('最大不可超过2M');
     }
-    this.toUploadFiles($file).then(res => {
-      this.$refs.md.$img2Url(pos, res.filePath);
-    })
+    this.toUploadFiles($file).then((res: any) => {
+      (this.$refs.md as any).$img2Url(pos, res.filePath);
+    });
   }
   // 删除图片
-  public imgDel() { }
+  public imgDel() { console.log(1); }
   @Watch('editorValue')
   private valueChange(val: any): void {
-    this.$emit('input', val)
+    this.$emit('input', val);
   }
 }
 </script>
